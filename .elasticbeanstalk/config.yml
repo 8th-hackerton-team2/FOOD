@@ -1,0 +1,20 @@
+branch-defaults:
+  maro:
+    environment: EBDockerDeploy-dev-maro
+  master:
+    environment: EBDockerDeploy-dev-maro
+    group_suffix: null
+global:
+  application_name: EB Docker Deploy
+  branch: null
+  default_ec2_keyname: fc-8th
+  default_platform: Docker 18.03.1-ce
+  default_region: ap-northeast-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: fc-8th-eb
+  repository: null
+  sc: git
+  workspace_type: Application

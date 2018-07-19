@@ -1,0 +1,32 @@
+{
+  "ALLOWED_HOSTS" : [
+    ".elasticbeanstalk.com",
+    "nssmr.com",
+    "www.nssmr.com"
+    ],
+
+
+  "DATABASES": {
+    "default": {
+      "ENGINE": "django.db.backends.postgresql",
+      "HOST": "eb-docker.c0afkt97bzcd.ap-northeast-2.rds.amazonaws.com",
+      "PORT": 5432,
+      "USER": "maro",
+      "PASSWORD": "zpffhrm2",
+      "NAME": "eb_deploy_rds_pro"
+    }
+  },
+  "AWS_ACCESS_KEY_ID":"AKIAJG7HABEOSO3PBP7Q",
+  "AWS_SECRET_ACCESS_KEY":"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",
+  "AWS_STORAGE_BUCKET_NAME":"fc-8th-eb-docker-deploy-mr-production",
+  "AWS_DEFAULT_ACL":"private",
+  "AWS_S3_REGION_NAME":"ap-northeast-2",
+  "AWS_S3_SIGNATURE_VERSION":"s3v4",
+
+  "SUPERUSER":{
+    "USERNAME":"maro4",
+    "EMAIL":"nadcdc4@gmail.com",
+    "PASSWORD":"zpffhrm2"
+  }
+
+}

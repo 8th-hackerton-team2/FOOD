@@ -5,6 +5,12 @@ name = "pypi"
 
 [packages]
 django = "*"
+awsebcli = "*"
+uwsgi = "*"
+"psycopg2-binary" = "*"
+django-storages = "*"
+pillow = "*"
+"boto3" = "*"
 
 [dev-packages]
 
