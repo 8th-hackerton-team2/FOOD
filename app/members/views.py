@@ -5,20 +5,20 @@ from django.contrib.auth import login, get_user_model, logout
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
+
+from food.models import Pension
 from members.forms import SignupForm
 
 User = get_user_model()
 
 __all__=(
-    'post_list',
     'login_view',
     # 'signup',
 
 )
 
 
-def post_list(request):
-    return render(request, 'posts/post_list.html')
+
 
 
 def login_view(request):
@@ -32,7 +32,7 @@ def login_view(request):
             login(request, user)
             if request.GET.get('next'):
                 return redirect(request.GET['next'])
-            return redirect('members:post_list')
+            return redirect('food:post_list')
         else:
             return redirect('members:login')
     else:
@@ -43,7 +43,7 @@ def logout_view(request):
     if request.method == 'POST':
         logout(request)
     print(request)
-    return redirect('members:post_list')
+    return redirect('food:post_list')
 
 
 

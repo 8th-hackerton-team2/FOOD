@@ -25,6 +25,7 @@ from config import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('members/', include('members.urls')),
+    path('pension/', include('food.urls')),
     path('', views.index, name='post_list'),
 
 ]+ static(

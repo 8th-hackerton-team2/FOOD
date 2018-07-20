@@ -19,6 +19,13 @@
     <a href="{% url 'members:signup' %}">signup</a>
     {% endif %}
 
+    {% for pension in pensions %}
+
+        <img src={{pension.photo}} alt="">
+        <div>{{pension.name}}</div>
+        <div>{{pension.price}}</div>
+
+    {% endfor %}
 
 
 {% endblock %}

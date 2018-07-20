@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from food.models import Pension
 
-# Create your views here.
+
+def post_list(request):
+    pensions = Pension.objects.all()
+
+    context = {
+        'pensions': pensions,
+    }
+    return render(request, 'posts/post_list.html', context)
