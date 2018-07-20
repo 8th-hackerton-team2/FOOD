@@ -1,3 +1,4 @@
+
 """
 Django settings for config project.
 
@@ -11,26 +12,59 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import json
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR =os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xocwvc8tj+=-%jh6s$jh&-bjr67^a=ht8vluwmlsy@7rr$+#5^'
+# # # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = '34u3do=@oa_$lhpflkswc81_vu$+1784!l(^zpfo1e(y05j#ln'
+
+
+ROOT_DIR = os.path.dirname(BASE_DIR)
+SECRET_DIR =os.path.join(ROOT_DIR,'.secrets')
+
+json_data = open(f'{SECRET_DIR}/base.json').read()
+data = json.loads(json_data)
+SECRET_KEY = data["SECRET_KEY"]
+
+
+# Static
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
+
+#media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+
+
+STATIC_DIR = os.path.join(BASE_DIR ,'static')
+STATICFILES_DIR=os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [STATIC_DIR] #
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
 
+# AUTH
+ADMIN_USERNAME = 'admin'
+ADMIN_PASSWORD = 'pbkdf2_sha256$100000$zNIjdY5qwrae$dASPtmQ/vw7VQ9cFD69aYu7hTxTLQLoFFzLqUzxtq1I='
+AUTH_USER_MODEL = 'members.User'
+
+AUTHENTICATION_BACKENDS = [
+'django.contrib.auth.backends.ModelBackend',
+    'members.backends.SettingsBackend',
+]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'members',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -117,4 +151,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+
