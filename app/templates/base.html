@@ -1,23 +1,19 @@
-{% load static %}
-
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 </head>
-<body>
+<body class="container" style="text-align: center">
 
-<div class="container">
-
-
-        <h2><a href="">야놀자 팬션</a></h2>
-
+        <h3><a href="">야놀자 팬션</a></h3>
+    {% if user.is_authenticated %}
+        <h5>{{ user }}님 환영합니다.</h5>
+    {% endif %}
 
     <!--user가 인증되어있으면 '로그아웃하기' 라는 링크를 보여주고 아니면 '로그인하기' 링크 보여주기 -->
 
@@ -29,14 +25,7 @@
     <!--URL: /members/logout/-->
     <!--view: members.views.logout_view-->
     <!--로그아웃 완료 후에는 index 로 redirect-->
-
-
         {% block content %}
-
         {% endblock %}
-
-    </div>
-</div>
-
 </body>
 </html>
