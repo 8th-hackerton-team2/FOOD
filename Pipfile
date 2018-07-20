@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 django = "*"
+selenium = "*"
+"bs4" = "*"
+lxml = "*"
+requests = "*"
 awsebcli = "*"
 uwsgi = "*"
 "psycopg2-binary" = "*"
