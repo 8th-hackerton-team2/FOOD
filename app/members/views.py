@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 
 
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import login, get_user_model, logout
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
@@ -42,6 +42,16 @@ def login_view(request):
             return redirect('members:login')
     else:
         return render(request, 'members/login.html')
+
+
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+    print(request)
+    return redirect('members:post_list')
+
+
+
 
 
 # def signup(request):

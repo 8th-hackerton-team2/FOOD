@@ -3,6 +3,23 @@
 
 {% block content %}
 
-    <h1>Hello, world. You're at the index.</h1>
+    <h1>Hello, world. You're at Post list</h1>
+
+    {% if user.is_authenticated %}
+
+         <form action="{% url 'members:logout' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">
+                로그아웃하기
+            </button>
+        </form>
+
+    {% else %}
+    <a href="{% url 'members:login' %}">로그인하기</a>
+    {% endif %}
+
+
 
 {% endblock %}
+
+
