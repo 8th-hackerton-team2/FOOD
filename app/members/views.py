@@ -1,11 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
-
-
-
-
 from django.contrib.auth import login, get_user_model, logout
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
@@ -54,17 +49,23 @@ def logout_view(request):
 
 
 
-# def signup(request):
-#
-#     if request.method == 'POST':
-#         form = SignupForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             user = form.signup()
-#             login(request,user)
-#             return redirect('index')
-#     else:
-#         form = SignupForm()
-#
-#     context = {'form': form, }
-#     return render(request, 'members/signup.html', context)
-#
+def signup(request):
+
+    if request.method == 'POST':
+
+        form = SignupForm(request.POST,request.FILES)
+
+        # form에 들어있는 데이터가 유효한지 검사.(해당 form 클래스에서 정의한 데이터 형식에서 벋어나지 않는지 판단.)
+        if form.is_valid():
+
+            user = form.signup() #signup 메소드는 form의 메소드 인데 form은 signupForm클래스의 인스턴스이다.
+
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('members:post_list')
+
+    else:
+        form = SignupForm()
+
+    context = {'form': form, }
+    return render(request, 'members/signup.html', context)
+

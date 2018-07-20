@@ -11,8 +11,11 @@ class UserAdmin(BaseUserAdmin):
         ('개인정보', {'fields': (
             'last_name',
             'first_name',
+            'gender',
             'email',
-            'img_profile',)}),
+            'img_profile',
+            'introduce',
+            'site',)}),
         ('권한', {'fields': (
             'is_active',
             'is_staff',
@@ -20,7 +23,7 @@ class UserAdmin(BaseUserAdmin):
         ('주요일자', {'fields': (
             'last_login',
             'date_joined')}),
-    )
 
+    )
 
 admin.site.register(User, UserAdmin)
