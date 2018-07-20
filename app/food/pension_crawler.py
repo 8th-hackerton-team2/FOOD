@@ -1,33 +1,49 @@
+import re
+
 import requests
 from bs4 import BeautifulSoup
-request = requests.get("http://www.yapen.co.kr")
+from .models import Pension
 
-response = request.text
 
-soup = BeautifulSoup(response, 'lxml')
+def pension_crawler():
+    request = requests.get("http://www.yapen.co.kr")
 
-class Yanolja:
-    def __init__(self, name, img, price ):
-        self.name = name
-        self.img = img
-        self.price =price
-    def __repr__(self):
-        return f'{self.img} {self.name}, {self.price}\n'
+    response = request.text
 
-title = soup.select('div.pensionName')
-img_file = soup.select('img.pensionImg')
-price=soup.select('div.price')
-title_list = []
-img_file_list= []
-price_list = []
-for i in title:
-    title_list.append(i.get_text())
-for i in img_file:
-    img_file_list.append(i.get('src'))
-for i in price:
-    price_list.append(i.get_text())
+    soup = BeautifulSoup(response, 'lxml')
 
-ya = []
-for i in range(len(title_list)):
-	ya.append(Yanolja(name=title_list[i], price=price_list[i], img=img_file_list[i]))
-print(ya)
+    title = soup.select('div.pensionName')
+    img_file = soup.select('img.pensionImg')
+    price=soup.select('div.price')
+    title_list = []
+    img_file_list= []
+    price_list = []
+    num_list = []
+    for i in title:
+        title_list.append(i.get_text())
+    for i in img_file:
+        img_file_list.append(i.get('src'))
+    for i in price:
+        price_list.append(i.get_text())
+
+    for i in img_file:
+        src = i.get('src')
+
+        list = re.split('/', src)
+
+        num_list.append(int(list[5]))
+
+    for i in range(len(img_file_list)):
+        name= title_list[i]
+        photo = img_file_list[i]
+        price = price_list[i]
+        num = num_list[i]
+
+        Pension.objects.get_or_create(
+            name=name,
+            photo=photo,
+            price=price,
+            pldx=num,
+        )
+
+
