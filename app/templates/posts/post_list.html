@@ -3,29 +3,38 @@
 
 {% block content %}
 
-    <h1>모든 팬션 리스트</h1>
-
+    <h4>pension list</h4>
+<div>
     {% if user.is_authenticated %}
 
          <form action="{% url 'members:logout' %}" method="POST">
             {% csrf_token %}
-            <button type="submit">
+            <button type="submit" class="btn btn-danger btn-sm" style="margin-bottom: 10px">
                 로그아웃하기
             </button>
         </form>
 
     {% else %}
-    <a href="{% url 'members:login' %}">로그인하기</a>
-    <a href="{% url 'members:signup' %}">signup</a>
+    <a href="{% url 'members:login' %}" class="btn btn-primary btn-sm" style="margin-bottom: 10px">Sign in</a>
+    <a href="{% url 'members:signup' %}" class="btn btn-info btn-sm" style="margin-bottom: 10px">Sign up</a>
     {% endif %}
+</div>
 
-    {% for pension in pensions %}
-
-        <img src={{pension.photo}} alt="">
-        <div>{{pension.name}}</div>
-        <div>{{pension.price}}</div>
-
-    {% endfor %}
+<div class="container">
+    <div class="row">
+        {% for pension in pensions %}
+        <div class="col-4 mb-3">
+            <div class="card">
+                <div class="card-img-top" style="height: 200px; background-image: url('{{pension.photo}}'); background-size: cover;"></div>
+                <div class="card-body">
+                    <h5 class="card-title">{{pension.name}}</h5>
+                    <p class="card-text">{{pension.price}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 
 {% endblock %}

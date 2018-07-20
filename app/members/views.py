@@ -61,7 +61,7 @@ def signup(request):
             user = form.signup() #signup 메소드는 form의 메소드 인데 form은 signupForm클래스의 인스턴스이다.
 
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')
-            return redirect('members:post_list')
+            return redirect('food:post_list')
 
     else:
         form = SignupForm()
