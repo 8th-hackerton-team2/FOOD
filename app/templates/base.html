@@ -10,7 +10,7 @@
 </head>
 <body class="container" style="text-align: center">
 
-        <h3><a href="">야놀자 팬션</a></h3>
+        <h3><a href="{% url 'food:post_list' %}">야놀자 팬션</a></h3>
     {% if user.is_authenticated %}
         <h5>{{ user }}님 환영합니다.</h5>
     {% endif %}

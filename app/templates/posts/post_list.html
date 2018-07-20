@@ -25,7 +25,7 @@
         {% for pension in pensions %}
         <div class="col-4 mb-3">
             <div class="card">
-                <div class="card-img-top" style="height: 200px; background-image: url('{{pension.photo}}'); background-size: cover;"></div>
+                <a href="{% url 'food:post_detail' pk=pension.pk %}"><div class="card-img-top" style="height: 200px; background-image: url('{{pension.photo}}'); background-size: cover;"></div></a>
                 <div class="card-body">
                     <h5 class="card-title">{{pension.name}}</h5>
                     <p class="card-text">{{pension.price}}</p>

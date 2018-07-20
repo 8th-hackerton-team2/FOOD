@@ -4,9 +4,15 @@
 {% block content %}
 
     <h1>팬션 디테일 페이지</h1>
+        <img src="{{ pension.photo }}" alt="">
+        <p>{{pension.name}}</p>
+        <p>{{pension.price}}</p>
+        <p>{{pension.address}}</p>
+        <p>{{pension.check_in}}</p>
+        <p>{{pension.check_out}}</p>
 
-
-
+        <p>{{pension.info}}</p>
+        <p>{{pension.theme}}</p>
 
 
 {% endblock %}
