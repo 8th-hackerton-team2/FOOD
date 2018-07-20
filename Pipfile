@@ -15,6 +15,7 @@ uwsgi = "*"
 django-storages = "*"
 pillow = "*"
 "boto3" = "*"
+Pipfile = "*"
 
 [dev-packages]
 
